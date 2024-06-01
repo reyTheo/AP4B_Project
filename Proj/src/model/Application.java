@@ -235,6 +235,7 @@ AUTRE};
 	private void miseEnPlaceEcouteurs() {
 		// Met en place les diff rents  couteurs pour les interractions avec l'utilisateur
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonOk(controlleur_boutons);
+		fenetre.getPanneauControles().ajouterEcouteurAuBoutonCouleur(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonZoomMoins(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonZoomPlus(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonZoomReel(controlleur_boutons);
@@ -677,11 +678,14 @@ AUTRE};
 	 * Choix couleur.
 	 */
 	public void choixCouleur() {
+		System.out.println("Choix couleur");
 		Color newColor = JColorChooser.showDialog(
                 fenetre, "Choisissez la nouvelle couleur du trac\u00e9",
                 fenetre.getPanneauVue().getCarte().getItineraireCouleur());
 		if (newColor != null){
 			fenetre.getPanneauVue().getCarte().setItineraireCouleur(newColor);
+			// Pour update la couleur au niveau du bouton après le choix dans le menu contextuel
+			fenetre.getPanneauControles().setItineraireCouleur(newColor);
 		}
 		chercherItineraire();
 		

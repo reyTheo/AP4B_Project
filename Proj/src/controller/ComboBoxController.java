@@ -44,5 +44,6 @@ public class ComboBoxController implements ActionListener {
 		else if (boxName.equals("jcbRueArrivee")) {
 			app.fillListPoints(PanelControls.jcbFlag.ARRIVEE);
 		}
+	
 	}
 }

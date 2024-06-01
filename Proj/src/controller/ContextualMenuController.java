@@ -29,6 +29,8 @@ public class ContextualMenuController implements ActionListener {
 		}
 		else if (choix.getName() == "choix_itineraire_couleur") {
 			app.choixCouleur();
+		} else if(choix.getName() == "choix_close") {
+			app.cacherMenuCarte();
 		}
 	}
 }

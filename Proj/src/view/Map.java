@@ -172,6 +172,9 @@ public class Map extends ImageScrollable {
 	
 	/** The choix_anti_aliasing. */
 	private JCheckBoxMenuItem choix_anti_aliasing;
+
+	/** The choix_close. */
+	private JMenuItem choix_close;
 	
 	/** The anti_aliasing. */
 	private boolean anti_aliasing = true;
@@ -245,6 +248,11 @@ public class Map extends ImageScrollable {
 		choix_anti_aliasing.setSelected(true);
 		choix_anti_aliasing.setName("choix_anti_aliasing");
 		menu.add(choix_anti_aliasing);
+
+		// Option "close"
+		choix_close = new JMenuItem("Close");
+		choix_close.setName("choix_close");
+		menu.add(choix_close);
 		
 		// Ajout du menu � la carte
 		add(menu);
@@ -339,6 +347,7 @@ public void clearPoints() {
      * Hide menu.
      */
     public void hideMenu() {
+		//changer ici pour afficher le menu de changement de couleur itinéraire
     	menu.setVisible(false);
     	point_proche_donnees_afficher = true;
     	repaint();
