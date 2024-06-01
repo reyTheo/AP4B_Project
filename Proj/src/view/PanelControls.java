@@ -116,8 +116,8 @@ DEPART,
 		/// Initialisation du Panel Ouest
         jpConteneurOuest = new JPanel(new GridBagLayout());
         jpConteneurOuest.setBorder(BorderFactory.createTitledBorder("Itinerary Controls"));
-		jpConteneurOuest.setPreferredSize(new Dimension(700, HAUTEUR)); 
-        jpConteneurOuest.setMinimumSize(new Dimension(700, HAUTEUR));
+		jpConteneurOuest.setPreferredSize(new Dimension(900, HAUTEUR)); 
+        jpConteneurOuest.setMinimumSize(new Dimension(900, HAUTEUR));
 		
 		// Creation des contraintes communes
 		contraintes = new GridBagConstraints();
@@ -224,10 +224,12 @@ DEPART,
 		jpConteneurOuest.add(jbOk, contraintes);
 
 		// Bouton pour modifier la couleur de l'itinéraire
-		jbCouleur = new JButton("Changer couleur du trac\u00e9...");
+		jbCouleur = new JButton("Changer couleur du trac\u00e9");
 		jbCouleur.setName("jbCouleur");
+		contraintes.gridx = 5;
+		contraintes.gridy = 0;
 		setItineraireCouleur(itineraire_couleur);
-		jpConteneurOuest.add(jbCouleur);
+		jpConteneurOuest.add(jbCouleur, contraintes);
 		
 		
 		// Creation du Panel Est

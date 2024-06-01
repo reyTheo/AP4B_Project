@@ -684,6 +684,8 @@ AUTRE};
                 fenetre.getPanneauVue().getCarte().getItineraireCouleur());
 		if (newColor != null){
 			fenetre.getPanneauVue().getCarte().setItineraireCouleur(newColor);
+			// Pour update la couleur au niveau du bouton après le choix dans le menu contextuel
+			fenetre.getPanneauControles().setItineraireCouleur(newColor);
 		}
 		chercherItineraire();
 		
