@@ -6,7 +6,7 @@ import model.Application;;
  *
  * @author Skeard
  */
-public class Main {
+public class Main { 
 	
 	/**
 	 * Creates the and show gui.
