@@ -22,6 +22,10 @@ public class ButtonsController implements ActionListener {
 			//t--app.readComboBoxForItinerarySearch();
 			app.showPoint();
 		}
+		else if (nom_bouton.equals("jbCouleur")) {
+			System.out.println("appuie sur bouton couleur");
+			app.choixCouleur();
+		}
 		else if (nom_bouton.equals("jbZoomPlus")) {
 			app.modifyZoom((float)Application.CRAN_ZOOM_PLUS);
 		}

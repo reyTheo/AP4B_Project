@@ -10,6 +10,7 @@ import javax.swing.event.ChangeListener;
 
 import model.Application;
 import org.jdesktop.swingx.autocomplete.*;
+import java.awt.image.BufferedImage;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -67,6 +68,12 @@ DEPART,
 	
 	/** The jb ok. */
 	private JButton jbOk;
+
+	/** The jb couleur itinéraire. */	
+	private JButton jbCouleur;
+
+	private Color itineraire_couleur = Color.BLUE;
+
 	
 	/** The jl zoom. */
 	private JLabel jlZoom;
@@ -215,6 +222,13 @@ DEPART,
 		contraintes.fill = GridBagConstraints.VERTICAL;
 		contraintes.anchor = GridBagConstraints.LINE_START;
 		jpConteneurOuest.add(jbOk, contraintes);
+
+		// Bouton pour modifier la couleur de l'itinéraire
+		jbCouleur = new JButton("Changer couleur du trac\u00e9...");
+		jbCouleur.setName("jbCouleur");
+		setItineraireCouleur(itineraire_couleur);
+		jpConteneurOuest.add(jbCouleur);
+		
 		
 		// Creation du Panel Est
 		jpConteneurEst = new JPanel(new GridBagLayout());
@@ -441,6 +455,16 @@ DEPART,
 	public void ajouterEcouteurAuBoutonOk(ActionListener ecouteur) {
 		jbOk.addActionListener(ecouteur);
 	}
+
+		/**
+	 * Ajouter ecouteur au bouton couleur.
+	 *
+	 * @param ecouteur the ecouteur
+	 */
+	public void ajouterEcouteurAuBoutonCouleur(ActionListener ecouteur) {
+		jbCouleur.addActionListener(ecouteur);
+	}
+
 	
 	/**
 	 * Ajouter ecouteur au bouton zoom moins.
@@ -595,4 +619,21 @@ DEPART,
 	public void setIconZoomPlus(ImageIcon icon) {
 		jbZoomPlus.setIcon(icon);
 	}
+
+	/**
+	 * Sets the itineraire couleur.
+	 *
+	* @param couleur the new itineraire couleur
+	*/
+   public void setItineraireCouleur(Color couleur) {
+	   itineraire_couleur = couleur;
+	   BufferedImage dessin_couleur = new BufferedImage(15, 15, BufferedImage.TYPE_INT_RGB);
+	   Graphics2D g2 = dessin_couleur.createGraphics();
+	   g2.setColor(itineraire_couleur);
+	   g2.fillRect(0, 0, 15, 15);
+	   ImageIcon icone_couleur = new ImageIcon(dessin_couleur);
+	   jbCouleur.setIcon(icone_couleur);
+   }
+
+	
 }
