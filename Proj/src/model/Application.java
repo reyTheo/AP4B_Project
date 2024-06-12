@@ -1,10 +1,7 @@
 package model;
 
 import controller.*;
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Point;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,6 +16,8 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import view.*;
+
+import java.awt.*;
 
 
 // TODO: Auto-generated Javadoc
@@ -482,9 +481,17 @@ AUTRE};
 								gaucheDroite = determinerGaucheDroite(numPtPrec2, numPtPrec, numPt);
 							}
 							else {
-								gaucheDroite = "tout_droit";
+								gaucheDroite = "tout droit";
 							}
-							fenetre.getPanneauInfos().ajouterRoute(nomRoute + " (" + convertirUniteDistance(lenRoute, 1) + ")", DOSSIER_IMAGES + "tourner_" + gaucheDroite + ".gif");
+							System.out.println(gaucheDroite);
+							//fenetre.getPanneauInfos().ajouterRoute(nomRoute + " (" + convertirUniteDistance(lenRoute, 1) + ")", DOSSIER_IMAGES + "tourner_" + gaucheDroite + ".gif");
+							if (gaucheDroite == "tout droit") {
+								fenetre.getPanneauInfos().ajouterRoute("Aller " + gaucheDroite + " sur : ", nomRoute + " (" + convertirUniteDistance(lenRoute, 1) + ")");
+							
+							}
+							else {
+								fenetre.getPanneauInfos().ajouterRoute("Tourner à " + gaucheDroite + " sur : ", nomRoute + " (" + convertirUniteDistance(lenRoute, 1) + ")");
+							}
 							lenTotale += lenRoute;
 							lenRoute = 0;
 						}
@@ -845,7 +852,7 @@ AUTRE};
 		else if (sin(angle)>0.1)
 			return "droite";
 		else
-			return "tout_droit";
+			return "tout droit";
 	}
 	
 	/**

@@ -132,7 +132,11 @@ public class PanelInformations extends JPanel{
 	 * @param chemin_image the chemin_image
 	 */
 	public void ajouterRoute(String route, String chemin_image) {
-		dlmFeuilleRoute.addElement(new ElementListe(route, chemin_image));
+		dlmFeuilleRoute.addElement(new ElementListe(route));
+		dlmFeuilleRoute.addElement(new ElementListe(chemin_image));
+		// ImageIcon image = new ImageIcon(chemin_image);
+		// 					getPanneauInfos().add(new JLabel(image));
+		// 					fenetre.setVisible(true);
 	}
 	
 	/**

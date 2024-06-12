@@ -348,7 +348,8 @@ public void clearPoints() {
      */
     public void hideMenu() {
 		//changer ici pour afficher le menu de changement de couleur itinéraire
-    	menu.setVisible(false);
+    	
+		menu.setVisible(false);
     	point_proche_donnees_afficher = true;
     	repaint();
     }
