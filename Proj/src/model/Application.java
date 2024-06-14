@@ -234,6 +234,7 @@ AUTRE};
 	private void miseEnPlaceEcouteurs() {
 		// Met en place les diff rents  couteurs pour les interractions avec l'utilisateur
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonOk(controlleur_boutons);
+		fenetre.getPanneauControles().ajouterEcouteurAuBoutonPoint(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonCouleur(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonZoomMoins(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonZoomPlus(controlleur_boutons);

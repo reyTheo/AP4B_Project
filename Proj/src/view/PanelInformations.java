@@ -21,6 +21,8 @@ public class PanelInformations extends JPanel{
 	
 	/** The dlm infos. */
 	private DefaultListModel dlmInfos; 
+
+	private DefaultListModel dlmInfos2; 
 	
 	/** The jl infos. */
 	private JList jlInfos;
@@ -100,14 +102,15 @@ public class PanelInformations extends JPanel{
 		jspInfos.setPreferredSize(new Dimension((int)l, INFOS_HAUTEUR));
 		jspInfos.setMinimumSize(new Dimension((int)l, INFOS_HAUTEUR));
 		jspInfos.setBorder(jspBorder);
-		add(jspInfos);
 		setMessage("Bienvenue !", "Choisissez un itin\u00e9raire.");
+		add(jspInfos);
+		
 		
 		// Ajout du label Feuille de route
 		lblFeuilleRoute = new JLabel("Feuille de route :");
 		lblFeuilleRoute.setFont(lblFeuilleRoute.getFont().deriveFont(Font.BOLD));
 		lblFeuilleRoute.setAlignmentX(Component.CENTER_ALIGNMENT);
-		//add(lblFeuilleRoute);
+		add(lblFeuilleRoute);
 		
 		// Ajout de la liste scrollable feuille de route
 		
@@ -119,9 +122,8 @@ public class PanelInformations extends JPanel{
 		jspFeuilleRoute.add(jlFeuilleRoute);
 		jspFeuilleRoute.setPreferredSize(new Dimension((int)l, (int)(h * (float)4/5)));
 		jspFeuilleRoute.setBorder(jspBorder);
-		jspFeuilleRoute.setVisible(false);
+		jspFeuilleRoute.setVisible(true);
 		add(jspFeuilleRoute);
-		
 		
 	}
 	
