@@ -699,12 +699,26 @@ AUTRE};
 		
 	}
 
+
 	/**
 	 * Update coord.
 	 *
 	 * @param X the x
 	 * @param Y the y
 	 */
+
+	public void putPoint(int X, int Y) {
+		// Ajout d'un point
+		Point point = new Point((int) (X / pourcentage_zoom*0.5), (int) (Y / pourcentage_zoom*0.5));
+
+		// Ajout du point dans la carte
+		dessinerPoint(point, Color.RED, 10);
+		// Mise a jour de l'affichage
+		fenetre.getPanneauVue().revalidate();
+		fenetre.repaint();
+
+	}
+
 	public void updateCoord(int X, int Y) {
 		Point pointSouris = new Point(X,Y);
 
