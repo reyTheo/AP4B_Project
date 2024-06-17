@@ -20,7 +20,8 @@ public class ButtonsController implements ActionListener {
 		String nom_bouton = buttonClicked.getName();
 		if (nom_bouton.equals("jbOk")) {
 			//t--app.readComboBoxForItinerarySearch();
-			app.showPoint();
+			//app.showPoint();
+			app.showRoute();
 		}
 		else if (nom_bouton.equals("jbCouleur")) {
 			System.out.println("appuie sur bouton couleur");
