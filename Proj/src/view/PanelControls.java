@@ -74,6 +74,8 @@ DEPART,
 
 	private JButton jbPoint;
 
+	private JButton jbRoute;
+
 	private Color itineraire_couleur = Color.BLUE;
 
 	
@@ -239,6 +241,13 @@ DEPART,
 		contraintes.gridx = 6;
 		contraintes.gridy = 0;
 		jpConteneurOuest.add(jbPoint, contraintes);
+
+		// Bouton pour modifier la couleur de l'itinéraire
+		jbRoute = new JButton("Afficher les routes");
+		jbRoute.setName("jbRoute");
+		contraintes.gridx = 7;
+		contraintes.gridy = 0;
+		jpConteneurOuest.add(jbRoute, contraintes);
 		
 		
 		// Creation du Panel Est
@@ -475,6 +484,17 @@ DEPART,
 	public void ajouterEcouteurAuBoutonPoint(ActionListener ecouteur) {
 		jbPoint.addActionListener(ecouteur);
 	}
+
+		/**
+	 * Ajouter ecouteur au bouton route.
+	 *
+	 * @param ecouteur the ecouteur
+	 */
+	public void ajouterEcouteurAuBoutonRoute(ActionListener ecouteur) {
+		jbRoute.addActionListener(ecouteur);
+	}
+
+
 
 		/**
 	 * Ajouter ecouteur au bouton couleur.
