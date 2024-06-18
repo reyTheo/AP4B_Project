@@ -72,6 +72,10 @@ DEPART,
 	/** The jb couleur itinéraire. */	
 	private JButton jbCouleur;
 
+	private JButton jbPoint;
+
+	private JButton jbRoute;
+
 	private Color itineraire_couleur = Color.BLUE;
 
 	
@@ -116,8 +120,8 @@ DEPART,
 		/// Initialisation du Panel Ouest
         jpConteneurOuest = new JPanel(new GridBagLayout());
         jpConteneurOuest.setBorder(BorderFactory.createTitledBorder("Itinerary Controls"));
-		jpConteneurOuest.setPreferredSize(new Dimension(900, HAUTEUR)); 
-        jpConteneurOuest.setMinimumSize(new Dimension(900, HAUTEUR));
+		jpConteneurOuest.setPreferredSize(new Dimension(1100, HAUTEUR)); 
+        jpConteneurOuest.setMinimumSize(new Dimension(1100, HAUTEUR));
 		
 		// Creation des contraintes communes
 		contraintes = new GridBagConstraints();
@@ -218,7 +222,7 @@ DEPART,
 		contraintes.gridx = 4;
 		contraintes.gridy = 0;
 		contraintes.gridheight = 2;
-		contraintes.gridwidth = GridBagConstraints.RELATIVE;
+		//contraintes.gridwidth = GridBagConstraints.RELATIVE;
 		contraintes.fill = GridBagConstraints.VERTICAL;
 		contraintes.anchor = GridBagConstraints.LINE_START;
 		jpConteneurOuest.add(jbOk, contraintes);
@@ -230,6 +234,20 @@ DEPART,
 		contraintes.gridy = 0;
 		setItineraireCouleur(itineraire_couleur);
 		jpConteneurOuest.add(jbCouleur, contraintes);
+
+		// Bouton pour modifier la couleur de l'itinéraire
+		jbPoint = new JButton("Afficher Points");
+		jbPoint.setName("jbPoint");
+		contraintes.gridx = 6;
+		contraintes.gridy = 0;
+		jpConteneurOuest.add(jbPoint, contraintes);
+
+		// Bouton pour modifier la couleur de l'itinéraire
+		jbRoute = new JButton("Afficher les routes");
+		jbRoute.setName("jbRoute");
+		contraintes.gridx = 7;
+		contraintes.gridy = 0;
+		jpConteneurOuest.add(jbRoute, contraintes);
 		
 		
 		// Creation du Panel Est
@@ -457,6 +475,26 @@ DEPART,
 	public void ajouterEcouteurAuBoutonOk(ActionListener ecouteur) {
 		jbOk.addActionListener(ecouteur);
 	}
+
+	/**
+	 * Ajouter ecouteur au bouton point.
+	 *
+	 * @param ecouteur the ecouteur
+	 */
+	public void ajouterEcouteurAuBoutonPoint(ActionListener ecouteur) {
+		jbPoint.addActionListener(ecouteur);
+	}
+
+		/**
+	 * Ajouter ecouteur au bouton route.
+	 *
+	 * @param ecouteur the ecouteur
+	 */
+	public void ajouterEcouteurAuBoutonRoute(ActionListener ecouteur) {
+		jbRoute.addActionListener(ecouteur);
+	}
+
+
 
 		/**
 	 * Ajouter ecouteur au bouton couleur.
