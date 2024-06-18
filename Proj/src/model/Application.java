@@ -706,18 +706,46 @@ AUTRE};
 	 * @param X the x
 	 * @param Y the y
 	 */
-
+	// Fonction qui met à jour les coordonnées de la souris et ajoute des points sur la carte
 	public void putPoint(int X, int Y) {
-		// Ajout d'un point
-		Point point = new Point((int) (X / pourcentage_zoom*0.5), (int) (Y / pourcentage_zoom*0.5));
+		// Calculate the actual point coordinates considering the zoom factor
+		int actualX = (int) (X / pourcentage_zoom * 0.5);
+		int actualY = (int) (Y / pourcentage_zoom * 0.5);
 
-		// Ajout du point dans la carte
-		dessinerPoint(point, Color.RED, 10);
-		// Mise a jour de l'affichage
-		fenetre.getPanneauVue().revalidate();
-		fenetre.repaint();
+		// Create a new Point object
+		Point point = new Point(actualX, actualY);
+	
+		XmlFileHandler xmlFileHandler = new XmlFileHandler();
+		
+		try {
+			// Load the XML file
+			xmlFileHandler.loadXmlFile("data/region_belfort_streets.xml");
 
+			// Find the maximum num value
+			String maxNumStr = xmlFileHandler.findMaxNum();
+			int maxNum = Integer.parseInt(maxNumStr);
+			int newNum = maxNum + 1;
+	
+			// Add a new point with dynamically calculated coordinates
+			xmlFileHandler.addPoint(String.valueOf(newNum), String.valueOf(actualX) + ".0", String.valueOf(actualY) + ".0");
+			
+			// Save the XML file
+			xmlFileHandler.saveXmlFile("data/region_belfort_streets.xml");
+			
+			// Add the point to the map
+			dessinerPoint(point, Color.RED, 10);
+			
+			// Update the display
+			fenetre.getPanneauVue().revalidate();
+			fenetre.repaint();
+			
+			System.out.println("Point added successfully.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			// Handle exception (e.g., show error message to user)
+		}
 	}
+	
 
 	public void updateCoord(int X, int Y) {
 		Point pointSouris = new Point(X,Y);

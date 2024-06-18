@@ -105,7 +105,7 @@ public class MapController implements MouseInputListener, MouseWheelListener {
     		 app.setNearestPointAsArrival();
     	 }
     	 
-    	 if (e.getButton() == 1 )
+    	 if (e.getButton() == 1 && !e.isShiftDown())
     	 {
     		 app.setNearestPointAsStart();
     		 
