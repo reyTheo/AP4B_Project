@@ -21,12 +21,18 @@ public class PanelInformations extends JPanel{
 	
 	/** The dlm infos. */
 	private DefaultListModel dlmInfos; 
+
+	private DefaultListModel dlmInfos2; 
 	
 	/** The jl infos. */
 	private JList jlInfos;
+
+	private JList jlInfos2;
 	
 	/** The jsp infos. */
 	private JScrollPane jspInfos;
+
+	private JScrollPane jspInfos2;
 	
 	/** The lbl feuille route. */
 	private JLabel lblFeuilleRoute;
@@ -100,28 +106,25 @@ public class PanelInformations extends JPanel{
 		jspInfos.setPreferredSize(new Dimension((int)l, INFOS_HAUTEUR));
 		jspInfos.setMinimumSize(new Dimension((int)l, INFOS_HAUTEUR));
 		jspInfos.setBorder(jspBorder);
-		add(jspInfos);
 		setMessage("Bienvenue !", "Choisissez un itin\u00e9raire.");
-		
+		add(jspInfos);
+
 		// Ajout du label Feuille de route
 		lblFeuilleRoute = new JLabel("Feuille de route :");
 		lblFeuilleRoute.setFont(lblFeuilleRoute.getFont().deriveFont(Font.BOLD));
 		lblFeuilleRoute.setAlignmentX(Component.CENTER_ALIGNMENT);
-		//add(lblFeuilleRoute);
-		
-		// Ajout de la liste scrollable feuille de route
-		
-		jlFeuilleRoute.setLayoutOrientation(JList.VERTICAL);
-		jlFeuilleRoute.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		jlFeuilleRoute.setVisibleRowCount(-1);
-		jlFeuilleRoute.setCellRenderer(new AfficheurElementListe());
-		jspFeuilleRoute = new JScrollPane(jlFeuilleRoute);
-		jspFeuilleRoute.add(jlFeuilleRoute);
-		jspFeuilleRoute.setPreferredSize(new Dimension((int)l, (int)(h * (float)4/5)));
-		jspFeuilleRoute.setBorder(jspBorder);
-		jspFeuilleRoute.setVisible(false);
-		add(jspFeuilleRoute);
-		
+		add(lblFeuilleRoute);
+
+		dlmInfos2 = new DefaultListModel();
+		jlInfos2 = new JList(dlmInfos2);
+		jlInfos2.setLayoutOrientation(JList.VERTICAL);
+		jlInfos2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		jlInfos2.setVisibleRowCount(-1);
+		jspInfos2 = new JScrollPane(jlInfos2);
+		jspInfos2.setPreferredSize(new Dimension((int)l, (int)(h * (float)4/5)));
+		//jspInfos2.setMinimumSize(new Dimension((int)l, INFOS_HAUTEUR));
+		jspInfos2.setBorder(jspBorder);
+		add(jspInfos2);
 		
 	}
 	
@@ -132,7 +135,11 @@ public class PanelInformations extends JPanel{
 	 * @param chemin_image the chemin_image
 	 */
 	public void ajouterRoute(String route, String chemin_image) {
-		dlmFeuilleRoute.addElement(new ElementListe(route, chemin_image));
+		dlmFeuilleRoute.addElement(new ElementListe(route));
+		dlmFeuilleRoute.addElement(new ElementListe(chemin_image));
+		// ImageIcon image = new ImageIcon(chemin_image);
+		// 					getPanneauInfos().add(new JLabel(image));
+		// 					fenetre.setVisible(true);
 	}
 	
 	/**
@@ -178,6 +185,7 @@ public class PanelInformations extends JPanel{
 	public void setLongueurTrajet(String longueur) {
 		longueur_trajet = longueur;
 		refaireInfos();
+		refaireInfos2();
 	}
 	
 	/**
@@ -192,6 +200,7 @@ public class PanelInformations extends JPanel{
 		this.y = y;
 		this.idPoint = idPoint;
 		refaireInfos();
+		refaireInfos2();
 	}
 	
 	/**
@@ -202,6 +211,7 @@ public class PanelInformations extends JPanel{
 	public void updateZoom(float zoom) {
 		this.zoom = zoom;
 		refaireInfos();
+		refaireInfos2();
 	}
 	
 	/**
@@ -212,6 +222,7 @@ public class PanelInformations extends JPanel{
 	public void updateDepart(int d) {
 		depart = d;
 		refaireInfos();
+		refaireInfos2();
 	}	
 	
 	/**
@@ -222,6 +233,7 @@ public class PanelInformations extends JPanel{
 	public void updateArrivee(int a) {
 		arrivee = a;
 		refaireInfos();
+		refaireInfos2();
 	}
 	
 	/**
@@ -243,10 +255,23 @@ public class PanelInformations extends JPanel{
 		dlmInfos.addElement(new String("Longueur du trajet : " + ((longueur_trajet == null) ? "-" : longueur_trajet)));
 		dlmInfos.addElement(new String("D\u00e9part : " + ((depart == -1) ? "-" : "Point "+ new Integer(depart).toString())));
 		dlmInfos.addElement(new String("Arriv\u00e9e : " + ((arrivee == -1) ? "-" : "Point "+ new Integer(arrivee).toString())));
-		dlmInfos.addElement(new String(" "));
-		dlmInfos.addElement(new String("Itineraire: "));
+	}
+
+	/**
+	 * Refaire infos.
+	 */
+	private void refaireInfos2() {
+		dlmInfos2.removeAllElements();
+		if(message1 != null)
+			dlmInfos2.addElement(message1);
+		if(message2 != null)
+			dlmInfos2.addElement(message2);
+		
+		dlmInfos2.addElement(new String("Itineraire: "));
+		dlmInfos2.addElement(new String(" "));
+
 		for(Object s: dlmFeuilleRoute.toArray()){
-			dlmInfos.addElement(s);
+			dlmInfos2.addElement(s);
 		}
 	}
 	

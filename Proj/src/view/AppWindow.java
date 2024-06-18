@@ -18,7 +18,7 @@ public class AppWindow extends JFrame{
 	public final static Color DefaultItineraireColor = Color.GREEN;
 	
 	/** The CONTROLE s_ hauteur. */
-	private final int CONTROLES_HAUTEUR = 120;
+	private final int CONTROLES_HAUTEUR = 180;
 	
 	/** The INFO s_ largeur. */
 	private final int INFOS_LARGEUR = 250;
@@ -133,9 +133,9 @@ public class AppWindow extends JFrame{
 		pnlCtrl.setMinimumSize(new Dimension(largeurUtil, 60));
 
 		// Créer un JSplitPane pour rendre le panneau d'informations coulissant
-        JSplitPane splitPaneVertical = new JSplitPane(JSplitPane.VERTICAL_SPLIT, pnlCtrl, splitPaneHorizontal);
-        splitPaneVertical.setDividerLocation(CONTROLES_HAUTEUR);
-        pnlInfo.setMinimumSize(new Dimension(1, h));
+        JSplitPane splitPaneVertical = new JSplitPane(JSplitPane.VERTICAL_SPLIT, splitPaneHorizontal, pnlCtrl);
+        splitPaneVertical.setDividerLocation(hauteurUtil - CONTROLES_HAUTEUR);
+        pnlInfo.setMinimumSize(new Dimension(180, h));
         // Ajouter le JSplitPane au centre de la fenêtre
         getContentPane().add(splitPaneVertical, BorderLayout.CENTER);
 		//------------

@@ -1,10 +1,7 @@
 package model;
 
 import controller.*;
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Point;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,6 +16,8 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import view.*;
+
+import java.awt.*;
 
 
 // TODO: Auto-generated Javadoc
@@ -240,6 +239,7 @@ AUTRE};
 	private void miseEnPlaceEcouteurs() {
 		// Met en place les diff rents  couteurs pour les interractions avec l'utilisateur
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonOk(controlleur_boutons);
+		fenetre.getPanneauControles().ajouterEcouteurAuBoutonPoint(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonCouleur(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonZoomMoins(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonZoomPlus(controlleur_boutons);
@@ -487,9 +487,17 @@ AUTRE};
 								gaucheDroite = determinerGaucheDroite(numPtPrec2, numPtPrec, numPt);
 							}
 							else {
-								gaucheDroite = "tout_droit";
+								gaucheDroite = "tout droit";
 							}
-							fenetre.getPanneauInfos().ajouterRoute(nomRoute + " (" + convertirUniteDistance(lenRoute, 1) + ")", DOSSIER_IMAGES + "tourner_" + gaucheDroite + ".gif");
+							System.out.println(gaucheDroite);
+							//fenetre.getPanneauInfos().ajouterRoute(nomRoute + " (" + convertirUniteDistance(lenRoute, 1) + ")", DOSSIER_IMAGES + "tourner_" + gaucheDroite + ".gif");
+							if (gaucheDroite == "tout droit") {
+								fenetre.getPanneauInfos().ajouterRoute("Aller " + gaucheDroite + " sur : ", nomRoute + " (" + convertirUniteDistance(lenRoute, 1) + ")");
+							
+							}
+							else {
+								fenetre.getPanneauInfos().ajouterRoute("Tourner à " + gaucheDroite + " sur : ", nomRoute + " (" + convertirUniteDistance(lenRoute, 1) + ")");
+							}
 							lenTotale += lenRoute;
 							lenRoute = 0;
 						}
@@ -696,12 +704,54 @@ AUTRE};
 		
 	}
 
+
 	/**
 	 * Update coord.
 	 *
 	 * @param X the x
 	 * @param Y the y
 	 */
+	// Fonction qui met à jour les coordonnées de la souris et ajoute des points sur la carte
+	public void putPoint(int X, int Y) {
+		// Calculate the actual point coordinates considering the zoom factor
+		int actualX = (int) (X / pourcentage_zoom * 0.5);
+		int actualY = (int) (Y / pourcentage_zoom * 0.5);
+
+		// Create a new Point object
+		Point point = new Point(actualX, actualY);
+	
+		XmlFileHandler xmlFileHandler = new XmlFileHandler();
+		
+		try {
+			// Load the XML file
+			xmlFileHandler.loadXmlFile("data/region_belfort_streets.xml");
+
+			// Find the maximum num value
+			String maxNumStr = xmlFileHandler.findMaxNum();
+			int maxNum = Integer.parseInt(maxNumStr);
+			int newNum = maxNum + 1;
+	
+			// Add a new point with dynamically calculated coordinates
+			xmlFileHandler.addPoint(String.valueOf(newNum), String.valueOf(actualX) + ".0", String.valueOf(actualY) + ".0");
+			
+			// Save the XML file
+			xmlFileHandler.saveXmlFile("data/region_belfort_streets.xml");
+			
+			// Add the point to the map
+			dessinerPoint(point, Color.RED, 10);
+			
+			// Update the display
+			fenetre.getPanneauVue().revalidate();
+			fenetre.repaint();
+			
+			System.out.println("Point added successfully.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			// Handle exception (e.g., show error message to user)
+		}
+	}
+	
+
 	public void updateCoord(int X, int Y) {
 		Point pointSouris = new Point(X,Y);
 
@@ -878,7 +928,7 @@ AUTRE};
 		else if (sin(angle)>0.1)
 			return "droite";
 		else
-			return "tout_droit";
+			return "tout droit";
 	}
 	
 	/**
