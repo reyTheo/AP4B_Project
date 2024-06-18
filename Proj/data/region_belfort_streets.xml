@@ -2500,7 +2500,7 @@
 			<point num="4" x="4948.0" y="2809.0"/>
 			<point num="3" x="5016.0" y="2862.0"/>
 			<point num="1" x="5349.0" y="2851.0"/>
-		<point num="130076" x="2173.0" y="2340.0"/><point num="130077" x="2135.0" y="2404.0"/></points>
+		</points>
 	<rues>
 		<rue nom="n19-1" sens="2">
 			<pt num="1"/>

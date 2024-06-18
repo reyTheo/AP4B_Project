@@ -733,7 +733,7 @@ AUTRE};
 			int newNum = maxNum + 1;
 	
 			// Add a new point with dynamically calculated coordinates
-			xmlFileHandler.addPoint(String.valueOf(newNum), String.valueOf(actualX) + ".0", String.valueOf(actualY) + ".0");
+			xmlFileHandler.addPoint(String.valueOf(newNum), String.valueOf(actualX * 2) + ".0", String.valueOf(actualY * 2) + ".0");
 			
 			// Save the XML file
 			xmlFileHandler.saveXmlFile("data/region_belfort_streets.xml");

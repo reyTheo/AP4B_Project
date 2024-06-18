@@ -53,6 +53,7 @@ public class MapController implements MouseInputListener, MouseWheelListener {
      */
     public void mouseMoved(MouseEvent e) {
     	app.updateCoord(e.getX(),e.getY());
+
     }
     
     /* (non-Javadoc)
