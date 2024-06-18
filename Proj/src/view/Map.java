@@ -30,6 +30,8 @@ import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import model.Application;
+import model.Road;
+import model.RoadNetwork;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -146,7 +148,13 @@ public class Map extends ImageScrollable {
 
 	public  List<Point> points;
 
+	public List<Road> routes;
+
+	public RoadNetwork graphe;
+
 	public boolean afficher_points_show= false;
+
+	public boolean afficher_routes_show= false;
     
     /** The point_proche_donnees. */
     private Vector<String> point_proche_donnees;
@@ -208,6 +216,7 @@ public class Map extends ImageScrollable {
 		point_proche_donnees = new Vector<String>();
 
 		points = new ArrayList<>();
+		routes = new ArrayList<>();
 		
 		setBackground(Color.white);
 		setOpaque(true);
@@ -316,8 +325,20 @@ public void addPoint(Point point) {
     repaint(); // Demande de redessiner la carte
 }
 
+public void addRoute(Road route, RoadNetwork pour_show_route) {
+	graphe = pour_show_route;
+	routes.add(route);
+	afficher_routes_show=false;
+	repaint(); // Demande de redessiner la carte
+}
+
 public void clearPoints() {
     points.clear();
+    repaint(); // Demande de redessiner la carte
+}
+
+public void clearRoute() {
+    routes.clear();
     repaint(); // Demande de redessiner la carte
 }
     
@@ -403,6 +424,30 @@ public void clearPoints() {
 			Point transformedPoint = new Point((int) ((int)point.getX() * pourcentage_zoom*2), (int) ((int)point.getY() * pourcentage_zoom*2));
 			tracePoint(g2, transformedPoint, Color.RED, 10);
 		}
+
+		if (!afficher_routes_show){
+		for (Road route : routes) {
+			System.out.println(route);
+			for (int i=0 ; i < route.getNombrePoints()-1; i++) {
+
+				Integer point_act_idx = route.getNumPoint(i);
+				System.out.println(point_act_idx);
+
+				if (i < route.getNombrePoints()) {
+					Integer point_next_idx = route.getNumPoint(i+1);
+
+					Point point_act = graphe.getPoint(point_act_idx);
+					Point point_next = graphe.getPoint(point_next_idx);
+
+					g2.drawLine((int)(point_act.getX() * pourcentage_zoom), (int)(point_act.getY() * pourcentage_zoom), (int)(point_next.getX() * pourcentage_zoom), (int)(point_next.getY() * pourcentage_zoom));
+				}
+			}
+			//afficher_routes_show = true;
+		}
+	}
+
+
+
 
     	// Tra�age de l'itin�raire
     	if (itineraire.size() > 1) {

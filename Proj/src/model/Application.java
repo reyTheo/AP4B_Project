@@ -142,6 +142,8 @@ AUTRE};
 	// R seau routier
 	/** The reseau_routier. */
 	private RoadNetwork reseau_routier;
+
+	private RoadNetwork pour_show_route;
 	
 	/** The plus_court_chemin. */
 	private ShortestPath plus_court_chemin;
@@ -180,6 +182,9 @@ AUTRE};
 		// Construction des differents elements de l'application
 		reseau_routier = new RoadNetwork();
 		reseau_routier.parseXml(fichierXml);
+
+		pour_show_route = new RoadNetwork();
+		pour_show_route.parseXml(fichierXml);
 		
 		lienCarte = DOSSIER_IMAGES + reseau_routier.getNomFichierImage();
 		new ImageIcon(lienCarte);
@@ -807,13 +812,41 @@ AUTRE};
 		}
 	}
 
+	public void showRoute() {
+		if (!arePrinted){
+			
+			List<String> list = new ArrayList<>(pour_show_route.getListeRoutes()); //listes des routes
+
+			for (int i = 0 ; i < list.size() ; i++) {
+				//System.out.println(list.get(i));
+				Road route_traitee = pour_show_route.getRoute(list.get(i));
+				//System.out.println(route_traitee);
+
+				dessinerRoute(route_traitee, Color.green, 10);
+
+			}
+			arePrinted = true;
+
+		} else {
+			clearRoute();
+			arePrinted = false;
+		}
+	}
 
 	public void dessinerPoint(Point point, Color couleur, int taille) {
 		fenetre.getPanneauVue().getCarte().addPoint(point);
 	}
 
+	public void dessinerRoute(Road route, Color couleur, int taille) {
+		fenetre.getPanneauVue().getCarte().addRoute(route, pour_show_route);
+	}
+
 	public void clearPoints() {
 		fenetre.getPanneauVue().getCarte().clearPoints();
+	}
+
+	public void clearRoute() {
+		fenetre.getPanneauVue().getCarte().clearRoute();
 	}
 
 
