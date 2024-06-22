@@ -245,6 +245,7 @@ AUTRE};
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonOk(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonPoint(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonRoute(controlleur_boutons);
+		fenetre.getPanneauControles().ajouterEcouteurAuBoutonEnleverMap(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonCouleur(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonZoomMoins(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonZoomPlus(controlleur_boutons);
@@ -737,7 +738,7 @@ AUTRE};
 			int newNum = maxNum + 1;
 	
 			// Add a new point with dynamically calculated coordinates
-			xmlFileHandler.addPoint(String.valueOf(newNum), String.valueOf(actualX) + ".0", String.valueOf(actualY) + ".0");
+			xmlFileHandler.addPoint(String.valueOf(newNum), String.valueOf(actualX * 2) + ".0", String.valueOf(actualY * 2) + ".0");
 			
 			// Save the XML file
 			xmlFileHandler.saveXmlFile("data/region_belfort_streets.xml");
