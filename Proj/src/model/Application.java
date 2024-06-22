@@ -88,6 +88,8 @@ public class Application {
 	/** The Constant DEPARTEMENTALE. */
 	public final static String DEPARTEMENTALE = "D\u00e9partementale";
 
+	
+
 
 	
 	/**
@@ -151,6 +153,8 @@ AUTRE};
 	private ShortestPath pour_show_point;
 
 	private boolean arePrinted;
+
+	public boolean afficher_map = true;
 	
 	/** The chemin. */
 	private Vector<ItineraryState> chemin;
@@ -822,9 +826,7 @@ AUTRE};
 				//System.out.println(list.get(i));
 				Road route_traitee = pour_show_route.getRoute(list.get(i));
 				//System.out.println(route_traitee);
-
 				dessinerRoute(route_traitee, Color.green, 10);
-
 			}
 			arePrinted = true;
 
@@ -848,6 +850,16 @@ AUTRE};
 
 	public void clearRoute() {
 		fenetre.getPanneauVue().getCarte().clearRoute();
+	}
+
+	public void afficherMap() {
+		if (afficher_map) {
+			afficher_map = false;
+			fenetre.getPanneauVue().getCarte().afficher_background_img = false;
+		} else {
+			afficher_map = true;
+			fenetre.getPanneauVue().getCarte().afficher_background_img = true;
+		}
 	}
 
 

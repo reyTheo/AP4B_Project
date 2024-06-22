@@ -155,6 +155,8 @@ public class Map extends ImageScrollable {
 	public boolean afficher_points_show= false;
 
 	public boolean afficher_routes_show= false;
+
+	public boolean afficher_background_img = true;
     
     /** The point_proche_donnees. */
     private Vector<String> point_proche_donnees;
@@ -401,8 +403,10 @@ public void clearRoute() {
     	Graphics2D g2 = (Graphics2D) g;
     	g2.setColor(getBackground());
 
-    	g2.drawImage(imgCarte, affineTransform, null);
-    	
+		if (afficher_background_img) {
+    		g2.drawImage(imgCarte, affineTransform, null);
+		}
+
     	// Tra�age de l'�chelle
     	g2.setColor(itineraire_echelle_couleur);
     	g2.setStroke(new BasicStroke(itineraire_echelle_epaisseur));
@@ -425,7 +429,7 @@ public void clearRoute() {
 			tracePoint(g2, transformedPoint, Color.RED, 10);
 		}
 
-		if (!afficher_routes_show){
+		//if (!afficher_routes_show){
 		for (Road route : routes) {
 			System.out.println(route);
 			for (int i=0 ; i < route.getNombrePoints()-1; i++) {
@@ -442,9 +446,8 @@ public void clearRoute() {
 					g2.drawLine((int)(point_act.getX() * pourcentage_zoom), (int)(point_act.getY() * pourcentage_zoom), (int)(point_next.getX() * pourcentage_zoom), (int)(point_next.getY() * pourcentage_zoom));
 				}
 			}
-			//afficher_routes_show = true;
 		}
-	}
+	//}
 
 
 
