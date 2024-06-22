@@ -19,7 +19,9 @@ public class ButtonsController implements ActionListener {
 		JButton buttonClicked = (JButton) evt.getSource();
 		String nom_bouton = buttonClicked.getName();
 		if (nom_bouton.equals("jbOk")) {
-			//app.readComboBoxForItinerarySearch();
+			app.readComboBoxForItinerarySearch();
+		}
+		else if (nom_bouton.equals("jbMap")) {
 			app.afficherMap();
 		}
 		else if (nom_bouton.equals("jbRoute")) {
