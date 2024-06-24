@@ -88,6 +88,8 @@ public class Application {
 	/** The Constant DEPARTEMENTALE. */
 	public final static String DEPARTEMENTALE = "D\u00e9partementale";
 
+	
+
 
 	
 	/**
@@ -151,6 +153,8 @@ AUTRE};
 	private ShortestPath pour_show_point;
 
 	private boolean arePrinted;
+
+	public boolean afficher_map = true;
 	
 	/** The chemin. */
 	private Vector<ItineraryState> chemin;
@@ -241,6 +245,8 @@ AUTRE};
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonOk(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonPoint(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonRoute(controlleur_boutons);
+		fenetre.getPanneauControles().ajouterEcouteurAuBoutonMode(controlleur_boutons);
+		fenetre.getPanneauControles().ajouterEcouteurAuBoutonEnleverMap(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonCouleur(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonZoomMoins(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonZoomPlus(controlleur_boutons);
@@ -733,7 +739,7 @@ AUTRE};
 			int newNum = maxNum + 1;
 	
 			// Add a new point with dynamically calculated coordinates
-			xmlFileHandler.addPoint(String.valueOf(newNum), String.valueOf(actualX) + ".0", String.valueOf(actualY) + ".0");
+			xmlFileHandler.addPoint(String.valueOf(newNum), String.valueOf(actualX * 2) + ".0", String.valueOf(actualY * 2) + ".0");
 			
 			// Save the XML file
 			xmlFileHandler.saveXmlFile("data/region_belfort_streets.xml");
@@ -822,9 +828,7 @@ AUTRE};
 				//System.out.println(list.get(i));
 				Road route_traitee = pour_show_route.getRoute(list.get(i));
 				//System.out.println(route_traitee);
-
 				dessinerRoute(route_traitee, Color.green, 10);
-
 			}
 			arePrinted = true;
 
@@ -850,7 +854,19 @@ AUTRE};
 		fenetre.getPanneauVue().getCarte().clearRoute();
 	}
 
+	public void afficherMap() {
+		if (afficher_map) {
+			afficher_map = false;
+			fenetre.getPanneauVue().getCarte().afficher_background_img = false;
+		} else {
+			afficher_map = true;
+			fenetre.getPanneauVue().getCarte().afficher_background_img = true;
+		}
+	}
 
+	public void rafraichirPanelControle(){
+		fenetre.getPanneauControles().rafraichir();
+	}
 
 	/**
 	 * Afficher menu contextuel.

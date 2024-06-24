@@ -55,6 +55,7 @@ public class XmlFileHandler {
         }
     }
 
+    // Function used to find the num maximum in the XML file to use it in the addPoint function and update the num when adding a point on the map 
     public String findMaxNum() throws Exception {
         try {
             NodeList pointList = doc.getElementsByTagName("point");

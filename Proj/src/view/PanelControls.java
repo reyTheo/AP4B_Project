@@ -76,6 +76,12 @@ DEPART,
 
 	private JButton jbRoute;
 
+	private JButton jbMode;
+
+	public static boolean modeEdition=false;
+
+	private JButton jbMap;
+
 	private Color itineraire_couleur = Color.BLUE;
 
 	
@@ -117,117 +123,57 @@ DEPART,
 		setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-		/// Initialisation du Panel Ouest
-        jpConteneurOuest = new JPanel(new GridBagLayout());
+		jpConteneurOuest = new JPanel(new GridBagLayout());
         jpConteneurOuest.setBorder(BorderFactory.createTitledBorder("Itinerary Controls"));
 		jpConteneurOuest.setPreferredSize(new Dimension(1100, HAUTEUR)); 
         jpConteneurOuest.setMinimumSize(new Dimension(1100, HAUTEUR));
 		
-		// Creation des contraintes communes
 		contraintes = new GridBagConstraints();
 		contraintes.insets = new Insets(5, 5, 5, 5);
 		contraintes.anchor = GridBagConstraints.HORIZONTAL;
 		contraintes.weightx = 0.0;
-		
-		//// Ajout du label Ville
-		//jlVille = new JLabel("Ville :");
-		//jlVille.setFont(jlVille.getFont().deriveFont(Font.BOLD));
-		//contraintes.gridx = 0;
-		//contraintes.gridy = 1;
-		//jpConteneurOuest.add(jlVille, contraintes);
-		//
-		//// Ajout du label Rue
-		//jlRue = new JLabel("Rue :");
-		//jlRue.setFont(jlVille.getFont().deriveFont(Font.BOLD));
-		//contraintes.gridx = 0;
-		//contraintes.gridy = 2;
-		//jpConteneurOuest.add(jlRue, contraintes);
-		//
-		//// Ajout du label Points
-		//jlPoint = new JLabel("Point :");
-		//jlPoint.setFont(jlPoint.getFont().deriveFont(Font.BOLD));
-		//contraintes.gridx = 0;
-		//contraintes.gridy = 3;
-		//jpConteneurOuest.add(jlPoint, contraintes);
-		
-		// Contrainte pour les autres composants
+
 		contraintes.anchor = GridBagConstraints.CENTER;
 		
-		// Ajout du label Depart
 		jlDepart = new JLabel("D\u00e9part :");
 		jlDepart.setFont(jlDepart.getFont().deriveFont(Font.BOLD));
-		contraintes.gridx = 0;
-		contraintes.gridy = 0;
-		jpConteneurOuest.add(jlDepart, contraintes);
 		
-		// Ajout de la ComboBox de la ville d�part
+		
 		jcbVilleDepart = new JComboBox();
 		jcbVilleDepart.setName("jcbVilleDepart");
-		jcbVilleDepart.setPreferredSize(new Dimension(175,20));
+		jcbVilleDepart.setPreferredSize(new Dimension(175, 20));
 		jcbVilleDepart.setEditable(true);
-		
-		contraintes.gridx = 1;
-		contraintes.gridy = 0;
-		jpConteneurOuest.add(jcbVilleDepart, contraintes);
-		
-		// Ajout de la ComboBox de la rue de d�part
+
 		jcbRueDepart = new JComboBox();
 		jcbRueDepart.setName("jcbRueDepart");
-		jcbRueDepart.setPreferredSize(new Dimension(175,20));
-		contraintes.gridx = 2;
-		contraintes.gridy = 0;
-		jpConteneurOuest.add(jcbRueDepart, contraintes);
-		
-		// Ajout de la ComboBox du point de d�part
+		jcbRueDepart.setPreferredSize(new Dimension(175, 20));
+
 		jcbPointDepart = new JComboBox();
-		jcbPointDepart.setPreferredSize(new Dimension(175,20));
-		contraintes.gridx = 3;
-		contraintes.gridy = 0;
-		jpConteneurOuest.add(jcbPointDepart, contraintes);
-		
-		// Ajout du label Arrivee
+		jcbPointDepart.setPreferredSize(new Dimension(175, 20));
+
 		jlArrivee = new JLabel("Arriv\u00e9e :");
 		jlArrivee.setFont(jlArrivee.getFont().deriveFont(Font.BOLD));
-		contraintes.gridx = 0;
-		contraintes.gridy = 1;		
-		jpConteneurOuest.add(jlArrivee, contraintes);
 		
-		// Ajout de la ComboBox de la ville d'arriv�e
 		jcbVilleArrivee = new JComboBox();
 		jcbVilleArrivee.setName("jcbVilleArrivee");
-		jcbVilleArrivee.setPreferredSize(new Dimension(175,20));
-		contraintes.gridx = 1;
-		contraintes.gridy = 1;
-		jpConteneurOuest.add(jcbVilleArrivee, contraintes);
+		jcbVilleArrivee.setPreferredSize(new Dimension(175, 20));
 		
-		// Ajout de la ComboBox de la rue d'arriv�e
 		jcbRueArrivee = new JComboBox();
 		jcbRueArrivee.setName("jcbRueArrivee");
-		jcbRueArrivee.setPreferredSize(new Dimension(175,20));
-		contraintes.gridx = 2;
-		contraintes.gridy = 1;
-		jpConteneurOuest.add(jcbRueArrivee, contraintes);
+		jcbRueArrivee.setPreferredSize(new Dimension(175, 20));
 		
-		// Ajout de la ComboBox du point de d�part
 		jcbPointArrivee = new JComboBox();
-		jcbPointArrivee.setPreferredSize(new Dimension(175,20));
-		contraintes.gridx = 3;
-		contraintes.gridy = 1;
-		jpConteneurOuest.add(jcbPointArrivee, contraintes);
-		
-		// Bouton pour valider la requete
+		jcbPointArrivee.setPreferredSize(new Dimension(175, 20));
+
 		jbOk = new JButton("Go");
 		jbOk.setFont(new Font(jbOk.getFont().getFontName(), Font.BOLD, 15));
 		jbOk.setName("jbOk");
 		contraintes.gridx = 4;
 		contraintes.gridy = 0;
 		contraintes.gridheight = 2;
-		//contraintes.gridwidth = GridBagConstraints.RELATIVE;
 		contraintes.fill = GridBagConstraints.VERTICAL;
 		contraintes.anchor = GridBagConstraints.LINE_START;
-		jpConteneurOuest.add(jbOk, contraintes);
-
-		// Bouton pour modifier la couleur de l'itinéraire
+		
 		jbCouleur = new JButton("Changer couleur du trac\u00e9");
 		jbCouleur.setName("jbCouleur");
 		contraintes.gridx = 5;
@@ -235,48 +181,34 @@ DEPART,
 		setItineraireCouleur(itineraire_couleur);
 		jpConteneurOuest.add(jbCouleur, contraintes);
 
-		// Bouton pour modifier la couleur de l'itinéraire
 		jbPoint = new JButton("Afficher Points");
 		jbPoint.setName("jbPoint");
 		contraintes.gridx = 6;
 		contraintes.gridy = 0;
-		jpConteneurOuest.add(jbPoint, contraintes);
 
-		// Bouton pour modifier la couleur de l'itinéraire
 		jbRoute = new JButton("Afficher les routes");
 		jbRoute.setName("jbRoute");
 		contraintes.gridx = 7;
 		contraintes.gridy = 0;
-		jpConteneurOuest.add(jbRoute, contraintes);
-		
-		
-		// Creation du Panel Est
+
+		jbMap = new JButton("Enlever la carte");
+		jbMap.setName("jbMap");
+		contraintes.gridx = 8;
+		contraintes.gridy = 0;
+
+		jbMode = new JButton("Changer Mode");
+		jbMode.setName("jbMode");
+		contraintes.gridx = 9;
+		contraintes.gridy = 0;
+
 		jpConteneurEst = new JPanel(new GridBagLayout());
 		jpConteneurEst.setBorder(BorderFactory.createTitledBorder("Zoom Controls"));
 		jpConteneurEst.setMaximumSize(new Dimension(400, HAUTEUR));
-		
-		// Contraintes communes
+
 		contraintes.gridheight = 1;
 		contraintes.weightx = 1.0;
 		contraintes.fill = GridBagConstraints.NONE;
-		
-		//// Label des zooms
-		//jlZoom = new JLabel("Zoom :");
-		//jlZoom.setFont(jlZoom.getFont().deriveFont(Font.BOLD));
-		//contraintes.gridx = 0;
-		//contraintes.gridy = 0;
-		//contraintes.gridwidth = 3;
-		//contraintes.anchor = GridBagConstraints.CENTER;
-		//jpConteneurEst.add(jlZoom, contraintes);
-		
 
-
-
-
-		//contraintes.gridwidth = 5;
-		//contraintes.weightx = 0.0;
-
-		// Boutton pour Zoomer
 		jbZoomPlus = new JButton();
 		jbZoomPlus.setName("jbZoomPlus");
 		jbZoomPlus.setText("+");
@@ -288,8 +220,6 @@ DEPART,
 		contraintes.anchor = GridBagConstraints.WEST;
 		jpConteneurEst.add(jbZoomPlus, contraintes);
 		
-
-		// Boutton pour Dezoomer
 		jbZoomMoins = new JButton();
 		jbZoomMoins.setName("jbZoomMoins");
 		jbZoomMoins.setText("-");
@@ -301,12 +231,10 @@ DEPART,
 		contraintes.anchor = GridBagConstraints.EAST;
 		jpConteneurEst.add(jbZoomMoins, contraintes);
 
-
-		//Slider de zoom
 		jsZoom = new JSlider();
-		jsZoom.setMinimum((int) (Application.ZOOM_MIN*100));
-		jsZoom.setMaximum((int) (Application.ZOOM_MAX*100));
-		jsZoom.setValue((int) (Application.ZOOM_INITIAL*100));
+		jsZoom.setMinimum((int) (Application.ZOOM_MIN * 100));
+		jsZoom.setMaximum((int) (Application.ZOOM_MAX * 100));
+		jsZoom.setValue((int) (Application.ZOOM_INITIAL * 100));
 		jsZoom.setMajorTickSpacing(10);
 		jsZoom.setPaintTicks(false);
 		jsZoom.setPaintLabels(false);
@@ -314,48 +242,116 @@ DEPART,
 		contraintes.gridx = 1;
 		contraintes.gridy = 0;
 		contraintes.gridwidth = 3;
-		jpConteneurEst.add(jsZoom,contraintes);
+		jpConteneurEst.add(jsZoom, contraintes);
 
-		
-		//Boutton pour avoir une vue d'ensemble (o� on ne vois rien d'ailleurs)
 		jbZoomGlobal = new JButton("Vue Globale");
 		jbZoomGlobal.setName("jbZoomGlobal");
 		jbZoomGlobal.setPreferredSize(new Dimension(100, 20));	
 		contraintes = new GridBagConstraints();
 		contraintes.gridx = 0;
 		contraintes.gridy = 2;
-		//contraintes.anchor = GridBagConstraints.CENTER;
 		jpConteneurEst.add(jbZoomGlobal, contraintes);
 		
-		// Boutton pour remettre le Zoom a la normale
 		jbZoomReel = new JButton("R\u00e9initialiser");
 		jbZoomReel.setName("jbZoomReel");
 		jbZoomReel.setPreferredSize(new Dimension(100, 20));
 		contraintes = new GridBagConstraints();
 		contraintes.gridx = 3;
 		contraintes.gridy = 2;
-		//contraintes.anchor = GridBagConstraints.CENTER;
 		jpConteneurEst.add(jbZoomReel, contraintes);
 		
-		//Boutton pour mettre la vue en gros plan
 		jbZoomGrosPlan = new JButton("Gros plan");
 		jbZoomGrosPlan.setName("jbZoomGrosPlan");
 		jbZoomGrosPlan.setPreferredSize(new Dimension(100, 20));
 		contraintes = new GridBagConstraints();
 		contraintes.gridx = 4;
 		contraintes.gridy = 2;
-		//contraintes.anchor = GridBagConstraints.CENTER;
 		jpConteneurEst.add(jbZoomGrosPlan, contraintes);
-		
-		// Creation du Layout general(de type BoxLayout)	
-		//setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-		//add(Box.createHorizontalGlue());
-		//add(jpConteneurOuest);
-		//add(Box.createHorizontalGlue());
-		//add(jpConteneurEst);
-		//add(Box.createHorizontalGlue());
+
 		add(jpConteneurOuest, BorderLayout.WEST);
         add(jpConteneurEst, BorderLayout.EAST);
+
+		updateComponents();
+	}
+
+	private void updateComponents() {
+		jpConteneurOuest.removeAll();
+		
+		if (modeEdition) {
+			contraintes.gridheight = 1;
+			jpConteneurOuest.setBorder(BorderFactory.createTitledBorder("Edition Mode"));
+
+			Dimension buttonSize = new Dimension(150, 45); // Par exemple, 100 de largeur et 30 de hauteur
+
+        	jbPoint.setPreferredSize(buttonSize);
+        	jbRoute.setPreferredSize(buttonSize);
+        	jbMap.setPreferredSize(buttonSize);
+
+			contraintes.gridx = 6;
+			contraintes.gridy = 0;
+			jpConteneurOuest.add(jbPoint, contraintes);
+
+			contraintes.gridx = 7;
+			contraintes.gridy = 0;
+			jpConteneurOuest.add(jbRoute, contraintes);
+
+			contraintes.gridx = 8;
+			contraintes.gridy = 0;
+			jpConteneurOuest.add(jbMap, contraintes);
+		} else {
+			jpConteneurOuest.setBorder(BorderFactory.createTitledBorder("Itinerary Controls"));
+
+			contraintes.weightx = 0.0;
+			contraintes.gridheight = 1;
+			contraintes.weightx = 1.0;
+			contraintes.gridx = 0;
+			contraintes.gridy = 0;
+			jpConteneurOuest.add(jlDepart, contraintes);
+			
+			contraintes.gridx = 1;
+			contraintes.gridy = 0;
+			jpConteneurOuest.add(jcbVilleDepart, contraintes);
+
+			contraintes.gridx = 2;
+			contraintes.gridy = 0;
+			jpConteneurOuest.add(jcbRueDepart, contraintes);
+
+			contraintes.gridx = 3;
+			contraintes.gridy = 0;
+			jpConteneurOuest.add(jcbPointDepart, contraintes);
+
+			contraintes.gridx = 0;
+			contraintes.gridy = 1;
+			jpConteneurOuest.add(jlArrivee, contraintes);
+
+			contraintes.gridx = 1;
+			contraintes.gridy = 1;
+			jpConteneurOuest.add(jcbVilleArrivee, contraintes);
+
+			contraintes.gridx = 2;
+			contraintes.gridy = 1;
+			jpConteneurOuest.add(jcbRueArrivee, contraintes);
+
+			contraintes.gridx = 3;
+			contraintes.gridy = 1;
+			jpConteneurOuest.add(jcbPointArrivee, contraintes);
+
+			contraintes.gridx = 4;
+			contraintes.gridy = 0;
+			contraintes.gridheight = 2;
+			contraintes.fill = GridBagConstraints.VERTICAL;
+			jpConteneurOuest.add(jbOk, contraintes);
+		}
+		
+		contraintes.gridx = 5;
+		contraintes.gridy = 0;
+		jpConteneurOuest.add(jbCouleur, contraintes);
+		contraintes.gridx = 9;
+		contraintes.gridy = 0;
+		jpConteneurOuest.add(jbMode, contraintes);
+		
+		jpConteneurOuest.revalidate();
+		jpConteneurOuest.repaint();
 	}
 	
 	/**
@@ -437,6 +433,8 @@ DEPART,
 		}
 		return ret;
 	}
+
+	
 	
 	/**
 	 * Sets the points.
@@ -493,8 +491,15 @@ DEPART,
 	public void ajouterEcouteurAuBoutonRoute(ActionListener ecouteur) {
 		jbRoute.addActionListener(ecouteur);
 	}
-
-
+	
+	/**
+	 * Ajouter ecouteur au bouton mode.
+	 *
+	 * @param ecouteur the ecouteur
+	 */
+	public void ajouterEcouteurAuBoutonMode(ActionListener ecouteur) {
+		jbMode.addActionListener(ecouteur);
+	}
 
 		/**
 	 * Ajouter ecouteur au bouton couleur.
@@ -504,7 +509,16 @@ DEPART,
 	public void ajouterEcouteurAuBoutonCouleur(ActionListener ecouteur) {
 		jbCouleur.addActionListener(ecouteur);
 	}
+	
 
+			/**
+	 * Ajouter ecouteur au bouton enlever map.
+	 *
+	 * @param ecouteur the ecouteur
+	 */
+	public void ajouterEcouteurAuBoutonEnleverMap(ActionListener ecouteur) {
+		jbMap.addActionListener(ecouteur);
+	}
 	
 	/**
 	 * Ajouter ecouteur au bouton zoom moins.
@@ -675,5 +689,10 @@ DEPART,
 	   jbCouleur.setIcon(icone_couleur);
    }
 
+
+   public void rafraichir(){
+		System.out.println(modeEdition);
+		updateComponents();
+   }
 	
 }
