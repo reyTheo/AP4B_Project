@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import model.Application;
+import view.PanelControls;
 
 
 public class ButtonsController implements ActionListener {
@@ -29,7 +30,12 @@ public class ButtonsController implements ActionListener {
 		}
 		else if (nom_bouton.equals("jbPoint")) {
 			app.showPoint();
+		}
+		else if (nom_bouton.equals("jbMode")) {
+			if (PanelControls.modeEdition) { PanelControls.modeEdition = false; }
+			else { PanelControls.modeEdition = true; }
 
+			app.rafraichirPanelControle();
 		}
 		else if (nom_bouton.equals("jbCouleur")) {
 			System.out.println("appuie sur bouton couleur");
