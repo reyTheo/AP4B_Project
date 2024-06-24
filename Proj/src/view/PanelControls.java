@@ -299,6 +299,8 @@ DEPART,
 			contraintes.gridy = 0;
 			jpConteneurOuest.add(jbMap, contraintes);
 		} else {
+			jpConteneurOuest.setBorder(BorderFactory.createTitledBorder("Itinerary Controls"));
+
 			contraintes.weightx = 0.0;
 			contraintes.gridheight = 1;
 			contraintes.weightx = 1.0;
