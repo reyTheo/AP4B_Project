@@ -245,6 +245,7 @@ AUTRE};
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonOk(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonPoint(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonRoute(controlleur_boutons);
+		fenetre.getPanneauControles().ajouterEcouteurAuBoutonMode(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonEnleverMap(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonCouleur(controlleur_boutons);
 		fenetre.getPanneauControles().ajouterEcouteurAuBoutonZoomMoins(controlleur_boutons);
@@ -863,7 +864,9 @@ AUTRE};
 		}
 	}
 
-
+	public void rafraichirPanelControle(){
+		fenetre.getPanneauControles().rafraichir();
+	}
 
 	/**
 	 * Afficher menu contextuel.
