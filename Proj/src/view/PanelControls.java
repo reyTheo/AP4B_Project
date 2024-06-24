@@ -125,8 +125,8 @@ DEPART,
 
 		jpConteneurOuest = new JPanel(new GridBagLayout());
         jpConteneurOuest.setBorder(BorderFactory.createTitledBorder("Itinerary Controls"));
-		jpConteneurOuest.setPreferredSize(new Dimension(1200, HAUTEUR)); 
-        jpConteneurOuest.setMinimumSize(new Dimension(1200, HAUTEUR));
+		jpConteneurOuest.setPreferredSize(new Dimension(1100, HAUTEUR)); 
+        jpConteneurOuest.setMinimumSize(new Dimension(1100, HAUTEUR));
 		
 		contraintes = new GridBagConstraints();
 		contraintes.insets = new Insets(5, 5, 5, 5);
